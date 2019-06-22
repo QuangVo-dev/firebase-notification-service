@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    build: ./django_firebase
+    volumes:
+      - ./django_firebase:/codebase
+    ports:
+      - "8000:8000"
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS="${GOOGLE_APPLICATION_CREDENTIALS}"
+ 
+ 
