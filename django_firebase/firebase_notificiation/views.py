@@ -15,11 +15,15 @@ import json
 # Create your views here.
 
 # Create Device tag
+
+
 class DeviceTagViewSet(ModelViewSet):
     queryset = DeviceTag.objects
     serializer_class = DeviceTagSerializer
 
-#Create Device
+# Create Device
+
+
 class DeviceViewSet(FCMDeviceViewSet):
     queryset = FCMDevice.objects
     serializer_class = DeviceSerializer
@@ -46,9 +50,12 @@ def SendNotification(request):
         json.dumps(str(icon))), ContentFile(icon.read()))
 
     if tags is not None:
-        device = DeviceTag.objects.all().filter(tags=tags)
-        print (device)
-        return
+        device_tags = DeviceTag.objects.all().filter(tags=tags)
+        for tag in device_tags:
+            for device in model_to_dict(tag)['devices']:
+                device.send_message(title=title, body=body,
+                                    icon=f'django_firebase/{path}', data=data)
+        return Response({"message": "NOTIFICATION_SENT_FOR_TAG_DEVICES"}, status=status.HTTP_200_OK)
 
     if registration_id is None:
         return Response({"message": "REGISTRATION_ID_CANNOT_BE_EMPTY"}, status=status.HTTP_400_BAD_REQUEST)
@@ -56,7 +63,7 @@ def SendNotification(request):
     if title is None or body is None:
         return Response({"message": "NOTIFICATION_CONTENT_CANNOT_BE_EMPTY"}, status=status.HTTP_400_BAD_REQUEST)
 
-    device = FCMDevice.objects.all().filter(registration_id=registration_id).first()
+    device=FCMDevice.objects.all().filter(registration_id=registration_id).first()
 
     try:
         device.send_message(title=title, body=body,

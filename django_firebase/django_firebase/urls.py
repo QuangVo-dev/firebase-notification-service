@@ -24,8 +24,7 @@ from firebase_notificiation.views import DeviceTagViewSet, DeviceViewSet
 from . import settings
 
 router = DefaultRouter(trailing_slash=False)
-router.register('devices', FCMDeviceViewSet)
-router.register('test-devices', DeviceViewSet)
+router.register('devices', DeviceViewSet)
 router.register('device-tags', DeviceTagViewSet)
 
 urlpatterns = []
