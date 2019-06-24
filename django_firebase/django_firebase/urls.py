@@ -19,6 +19,8 @@ from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 from fcm_django.api.rest_framework import FCMDeviceViewSet
 from firebase_notificiation.views import SendNotification
+from django.conf.urls.static import static
+from . import settings
 
 router = DefaultRouter(trailing_slash=False)
 router.register('devices', FCMDeviceViewSet)
@@ -33,5 +35,5 @@ urlpatterns = [
     path('firebase', TemplateView.as_view(
         template_name='index.html'), name='firebase'),
     path('firebase-messaging-sw.js', (TemplateView.as_view(template_name="firebase-messaging-sw.js",
-                                        content_type='application/javascript', )), name='firebase-messaging-sw.js')
-]
+                                                           content_type='application/javascript', )), name='firebase-messaging-sw.js')
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
