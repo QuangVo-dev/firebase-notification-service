@@ -8,5 +8,14 @@ services:
       - "8000:8000"
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS="${GOOGLE_APPLICATION_CREDENTIALS}"
- 
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5442:5432
+  
  

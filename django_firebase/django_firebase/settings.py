@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'fcm_django'
+    'fcm_django',
+    'firebase_notificiation'
 ]
 
 MIDDLEWARE = [
@@ -79,8 +80,13 @@ WSGI_APPLICATION = 'django_firebase.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('PGDATABASE', 'postgres'),
+        'USER': os.getenv('PGUSER', 'postgres'),
+        'PASSWORD': os.getenv('PGPASSWORD', 'postgres'),
+        'HOST': os.getenv('PGHOST', 'postgres'),
+        'PORT': '5432',
+        'CONN_MAX_AGE': 60
     }
 }
 

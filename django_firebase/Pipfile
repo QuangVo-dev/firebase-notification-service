@@ -10,6 +10,7 @@ pylint = "*"
 fcm-django = "*"
 djangorestframework = "*"
 djangorestframework-simplejwt = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.7"

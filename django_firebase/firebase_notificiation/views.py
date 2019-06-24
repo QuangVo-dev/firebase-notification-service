@@ -7,9 +7,16 @@ from rest_framework import status
 from fcm_django.models import FCMDevice
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
-import base64
+from fcm_django.api.rest_framework import FCMDeviceViewSet
+from .models import DeviceModel
+from .serializers import DeviceSerializer
 import json
 # Create your views here.
+
+class DeviceViewSet(FCMDeviceViewSet):
+    queryset = DeviceModel.objects.all()
+    serializer_class = DeviceSerializer
+
 
 
 @api_view(['POST'])
@@ -38,5 +45,4 @@ def SendNotification(request):
     except Exception as e:
         print(e)
         return Response({"message": "INTERNAL_SERVER_ERROR"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
     return Response({"message": "NOTIFCATION_SENT"}, status=status.HTTP_200_OK)
