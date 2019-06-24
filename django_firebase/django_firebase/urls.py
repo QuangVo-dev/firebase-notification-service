@@ -20,12 +20,13 @@ from rest_framework.routers import DefaultRouter
 from fcm_django.api.rest_framework import FCMDeviceViewSet
 from firebase_notificiation.views import SendNotification
 from django.conf.urls.static import static
-from firebase_notificiation.views import DeviceViewSet
+from firebase_notificiation.views import DeviceTagViewSet, DeviceViewSet
 from . import settings
 
 router = DefaultRouter(trailing_slash=False)
 router.register('devices', FCMDeviceViewSet)
 router.register('test-devices', DeviceViewSet)
+router.register('device-tags', DeviceTagViewSet)
 
 urlpatterns = []
 urlpatterns += router.urls
