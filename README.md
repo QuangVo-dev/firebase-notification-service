@@ -31,6 +31,11 @@ pipenv run python manage.py migrate
 
 Start schedule worker
 ---------------------
+Access to docker container
+```
+docker-compose exec web bash
+```
+Run worker
 ```
 pipenv run python manage.py rqworker
 piepnv run python manage.py rqscheduler
