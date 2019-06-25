@@ -10,8 +10,21 @@ Export google credentials environment:
 GOOGLE_APPLICATION_CREDENTIALS='your-google-credentials-api-key'
 ```
 
-RUN THE WEB
+Run web
 -----------
 ```
 docker-compose up --build
+```
+
+Migrate database
+---------------
+Access to docker container
+```
+docker-compose exec web bash
+```
+
+Migrate
+```
+pipenv run python manage.py makemigrations
+pipenv run python manage.py migrate
 ```
