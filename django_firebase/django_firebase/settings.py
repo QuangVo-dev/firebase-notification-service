@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'fcm_django',
+    'django_rq',
     'firebase_notificiation'
 ]
 
@@ -123,6 +124,15 @@ SIMPLE_JWT = {
 AUTH_PASSWORD_VALIDATORS = [
 ]
 
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'redis',
+        'PORT': 6379,
+        'DB': 0,
+        'DEFAULT_TIMEOUT': 360,
+    }
+}
+
 FCM_DJANGO_SETTINGS = {
         "APP_VERBOSE_NAME":  "_('FCM Django')",
          # default: _('FCM Django')
@@ -142,7 +152,7 @@ FCM_DJANGO_SETTINGS = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 USE_I18N = True
 

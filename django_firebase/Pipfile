@@ -11,6 +11,10 @@ fcm-django = "*"
 djangorestframework = "*"
 djangorestframework-simplejwt = "*"
 psycopg2-binary = "*"
+django-rq = "*"
+django-redis = "*"
+rq-scheduler = "*"
+
 
 [requires]
 python_version = "3.7"
